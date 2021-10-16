@@ -1,0 +1,280 @@
+@font-face {
+    font-family: "TT Norms Pro";
+    src: url('./fonts/TTNormsPro-Bold.woff2') format("woff2");
+    font-style: normal;
+    font-weight: 700;
+}
+@font-face {
+    font-family: "TT Norms Pro";
+    src: url('./fonts/TTNormsPro-Regular.woff2') format("woff2");
+    font-style: normal;
+    font-weight: 400;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "TT Norms Pro", Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Стили */
+
+body {
+    --backgroundColor: #4b4f58;
+    --white: #fff;
+    --black: #373737;
+    --grey: #c4c4c4;
+    --containerWidth: 1166px;
+    font-size: 18px;
+    line-height: 140%;
+    background-color: var(--backgroundColor);
+    color: var(--white);
+}
+.overflowHidden {
+    overflow: hidden;
+}
+.container {
+    width: 1166px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: center;
+    padding-top: 65px;
+    position: relative;
+    z-index: 1;
+}
+.header__logo {
+    max-height: 25px;
+}
+.header > .container {
+    display: flex;
+    justify-content: space-between;
+}
+.header__nav ul {
+    display: flex;
+}
+.header__nav-item:not(:last-child) {
+    margin-right: 76px;
+}
+.header__nav-item button {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Information */
+.information {
+    display: none;
+    justify-content: center;
+    padding-top: 75px;
+}
+.information > .container {
+    display: flex;
+    flex-direction: column;
+}
+.information__text {
+    width: 583px;
+}
+.information__text span:not(:last-child) {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.information__photo {
+    position: absolute;
+    right: 0;
+    margin-top: 110px;
+}
+
+/* Constructor */
+.constructor {
+    display: none;
+    justify-content: center;
+    padding-top: 75px;
+    padding-bottom: 140px;
+}
+.constructor > .container {
+    display: flex;
+    justify-content: space-between;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.person__photo {
+    position: absolute;
+    width: 362px;
+    height: 600px;
+}
+.person__country {
+    height: 30px;
+}
+.person__photo img {
+    position: absolute;
+}
+.person__1 {
+    top: 53px;
+    left: 131px;
+}
+.person__2 {
+    top: 122px;
+    left: 35px;
+}
+.person__3 {
+    top: 200px;
+    left: 0px;
+}
+.person__4 {
+    top: 200px;
+    left: 100px;
+}
+.person__5 {
+    top: 200px;
+    left: 200px;
+}
+.person__6 {
+    top: 300px;
+    left: 0px;
+}
+.person__7 {
+    top: 300px;
+    left: 100px;
+}
+.person__8 {
+    top: 300px;
+    left: 200px;
+}
+.person__9 {
+    top: 400px;
+    left: 0px;
+}
+.person__10 {
+    top: 400px;
+    left: 100px;
+}
+.person__11 {
+    top: 400px;
+    left: 200px;
+}
+.person__country {
+    margin-top: 30px;
+}
+.charactetistics, .countryInformation__characteristics {
+    width: 395px;
+}
+.characteristics__title {
+    margin-bottom: 50px;
+    font-size: 18px;
+    font-weight: normal;
+}
+.characteristics-item,  .countryInformationCharacteristics-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.characteristics-item:not(:last-child), .countryInformationCharacteristics-item:not(:last-child) {
+    margin-bottom: 28px;
+}
+.characteristics-item__title, .countryInformationCharacteristics__title{
+    font-size: 18px;
+}
+.characteristics-item__buttons, .countryInformationCharacteristics__buttons {
+    display: flex;
+}
+.characteristics-item__buttons button, .countryInformationCharacteristics__buttons button{
+    display: block;
+    width: 31px;
+    height: 31px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--black);
+    cursor: pointer;
+}
+.countryInformationCharacteristics__buttons button {
+    cursor: default;
+}
+.characteristics-item__buttons button:not(:last-child), .countryInformationCharacteristics__buttons button:not(:last-child) {
+    margin-right: 19px;
+}
+.characteristics-item__buttons .selected, .countryInformationCharacteristics__buttons .selected {
+    background-color: var(--grey);
+}
+
+/* Map */
+.map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    
+    position: absolute;    
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: grabbing;
+}
+.map__wrapper{
+    position: relative;
+}
+.map__photo {
+    position: absolute;
+}
+.map__photo-vector {
+    position: relative;
+}
+.map__photo-vector path {
+    transition: 0.1s ease;
+    opacity: 0;
+}
+.map__photo-vector path:hover {
+    opacity: 0.25;
+}
+.map__person {
+    position: absolute;
+    z-index: 5;
+    display: none;
+    pointer-events: none;
+}
+
+/* Country Information */
+.countryInformation {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 200px;
+}
+.countryInformation > .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.countryInformation__photo {
+    max-height: 500px;
+}
+.countryInformation__person {
+    position: absolute;
+}
