@@ -85,17 +85,29 @@ function onConstructorButtonClick(evt) {
     changeCountryOnConstructorPage(characteristics.map(characteristic => characteristic.count).join(""));
 }
 function changeCountryOnConstructorPage(str) {
-    console.log(str);
-    let country = countries.find(country => country.characteristics === str);
-    if (country) {
-        document.querySelector(`.person__country`).src = `images/countriesLogo/${country.id}.png`;
-    }
-    else {
-        document.querySelector(`.person__country`).src = `images/countriesLogo/0.png`;
-    }
-    
+    let country = getCloseCountry(str);
+    // let country = countries.find(country => country.characteristics === str);
+    document.querySelector(`.person__country`).src = `images/countriesLogo/${country.id}.png`;
 }
-
+function getCloseCountry(str) {
+    let arr = str.split("");
+    let min = Infinity;
+    let minIndex;
+    let diff = [""];
+    for (let i = 1; i < countries.length; i++) {
+        let currentCharacteristics = countries[i].characteristics.split("");
+        diff[i] = (currentCharacteristics.map((item, index) => {
+            return Math.abs(+item - +arr[index]);
+        }).reduce((prev, cur) => prev + cur, 0));
+    };
+    for (let i = 1; i < diff.length; i++) {
+        if (diff[i] < min) {
+            min = diff[i];
+            minIndex = i;
+        }
+    }
+    return countries[minIndex];
+}
 // Templates: Sections and other;
 let mapTemplate = document.querySelector(".map");
 let informationTemplate = document.querySelector(".information");
@@ -195,30 +207,38 @@ window.addEventListener("load", function() {
 (function() {    
     let map = document.querySelector(".map__wrapper");
     let instance = panzoom(map, {
-        maxZoom: 8,
+        maxZoom: 4.5,
         minZoom: 1,
         bounds: true,
         boundsPadding: 0.4,
     });
+    instance.on('transform', function(evt) {
+        mapPerson.style.display = "none";
+    })
     setTimeout(() => {
-        instance.smoothZoom(window.innerWidth / 2, 100, 3);
+        instance.smoothZoom(window.innerWidth / 2, 110, 4.5);
         setTimeout(() => {
-            instance.setMinZoom(1);
+            instance.setMinZoom(4.5);
         }, 500)
         
     }, 1000);
     
     let mapPerson = document.querySelector(".map__person");
-    const MAP_PERSON_WIDTH = 115;
-    const MAP_PERSON_HEIGHT = 180;
+    const MAP_PERSON_WIDTH = 400;
+    const MAP_PERSON_HEIGHT = 600;
 
 
     function onCountryHover(evt) {
         let country = evt.target;
         let countryPos = country.getBoundingClientRect();
         let countryId = country.getAttribute("id").split("-")[1];
+        let countryCharacteristics = countries.find(country => country.id == countryId).characteristics.split("");
         mapPerson.style.display = "block";
+        for (let i = 1; i < 11; i++) {
+            mapPerson.querySelector(`#mapPersonPart-${i}`).src = `images/characterPart/${i}${countryCharacteristics[i - 1]}.png`;
+        }
         mapPerson.src = `images/characters/${countryId}.png`;
+        logo.src = `images/countriesLogo/${countryId}.png`
         if (countryId == "30") {
             mapPerson.style.top =  `${Math.round(countryPos.top) + Math.round(countryPos.height) / 2 - MAP_PERSON_HEIGHT / 2}px`;
             mapPerson.style.left = `${Math.round(countryPos.left) + Math.round(countryPos.width) / 20 - MAP_PERSON_WIDTH / 2}px`;    
@@ -230,30 +250,35 @@ window.addEventListener("load", function() {
     }
     function onCountryMouseLeave(evt) {
         mapPerson.style.display = "none";
+        if (pageStatus === "map") logo.src = "images/countriesLogo/0.png";
     }
     function onCountryClick(evt) {
         countryInformationPerson.style.display = "none";
         let countryId = evt.target.getAttribute("id").split("-")[1];
-        logo.src = `images/countriesLogo/${countryId}.png`
         let countryCharacteristics = countries.find(country => country.id == countryId).characteristics.split("");
         let characteristicTemplates = countryInformationCharacteristicListTemplate.querySelectorAll(".countryInformationCharacteristics-item");
+        logo.src = `images/countriesLogo/${countryId}.png`;
         for (let i = 0; i < characteristics.length; i++) {
             let buttons = characteristicTemplates[i].querySelectorAll("button");
             characteristicTemplates[i].querySelector(".countryInformationCharacteristics__title").textContent = characteristics[i]["name"];
+            cleanCharacteristicButton(buttons);
             drawCharacteristicButtons(buttons, +countryCharacteristics[i])
         }
         countryInformationPhoto.src = `images/countries/${countryId}.png`;
-        countryInformationPerson.src = `images/characters/${countryId}.png`;
+        for (let i = 1; i < 11; i++) {
+            countryInformationPerson.querySelector(`#countryInformationPersonPart-${i}`).src = `images/characterPart/${i}${countryCharacteristics[i - 1]}.png`;
+        }
         
         setTimeout(() => {
             let cpp = countryInformationPhoto.getBoundingClientRect();
             countryInformationPerson.style.top = `${Math.round(cpp.top) + Math.round(cpp.height) / 2 - MAP_PERSON_HEIGHT / 2}px`;
             countryInformationPerson.style.left = `${Math.round(cpp.left) + Math.round(cpp.width) / 2 - MAP_PERSON_WIDTH / 2}px`;
             countryInformationPerson.style.display = "block";
-        }, 20)
+        }, 200)
         
         pageStatus = "countryInformation";
         navigateMenu(pageStatus);
+        
     }
     let pathCountries = map.querySelectorAll(".country");
     pathCountries.forEach(country => {

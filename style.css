@@ -87,6 +87,7 @@ body {
     display: none;
     justify-content: center;
     padding-top: 75px;
+    padding-bottom: 100px;
 }
 .information > .container {
     display: flex;
@@ -102,7 +103,7 @@ body {
 .information__photo {
     position: absolute;
     right: 0;
-    margin-top: 110px;
+    margin-top: 19px;
 }
 
 /* Constructor */
@@ -123,7 +124,7 @@ body {
 }
 .person__photo {
     position: absolute;
-    width: 362px;
+    width: 400px;
     height: 600px;
 }
 .person__country {
@@ -132,49 +133,53 @@ body {
 .person__photo img {
     position: absolute;
 }
+.person__photo-wrapper {
+    width: 400px;
+    height: 600px;
+}
 .person__1 {
-    top: 53px;
-    left: 131px;
+    top: 68px;
+    left: 68px;
 }
 .person__2 {
-    top: 122px;
-    left: 35px;
+    top: 201px; 
+    left: 100px;
 }
 .person__3 {
-    top: 200px;
-    left: 0px;
+    top: 87px;
+    left: 1px;
 }
 .person__4 {
-    top: 200px;
-    left: 100px;
+    top: 61px;
+    left: 105px;
 }
 .person__5 {
-    top: 200px;
-    left: 200px;
+    top: 20px;
+    left: 128px;
 }
 .person__6 {
-    top: 300px;
-    left: 0px;
+    top: 21px;
+    left: 127px;
 }
 .person__7 {
-    top: 300px;
-    left: 100px;
+    top: 99px;
+    left: 162px;
 }
 .person__8 {
-    top: 300px;
-    left: 200px;
+    top: 0px;
+    left: 115px;
 }
 .person__9 {
-    top: 400px;
-    left: 0px;
+    top: 115px;
+    left: 170px;
 }
 .person__10 {
-    top: 400px;
-    left: 100px;
+    top: 251px;
+    left: 16px;
 }
 .person__11 {
-    top: 400px;
-    left: 200px;
+    top: 60px;
+    left: 160px;
 }
 .person__country {
     margin-top: 30px;
@@ -244,6 +249,16 @@ body {
 .map__photo {
     position: absolute;
 }
+.map__person {
+    width: 400px;
+    height: 600px;
+    transform-origin: 50% 50%;
+    transform: scale(0.3);
+    position: relative;
+}
+.map__person img {
+    position: absolute;
+}
 .map__photo-vector {
     position: relative;
 }
@@ -276,5 +291,12 @@ body {
     max-height: 500px;
 }
 .countryInformation__person {
+    width: 400px;
+    height: 600px;
+    transform-origin: 50% 50%;
+    transform: scale(0.3);
+    position: absolute;
+}
+.countryInformation__person img {
     position: absolute;
 }
