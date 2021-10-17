@@ -294,7 +294,7 @@ body {
     width: 400px;
     height: 600px;
     transform-origin: 50% 50%;
-    transform: scale(0.3);
+    transform: scale(0.5);
     position: absolute;
 }
 .countryInformation__person img {

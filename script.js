@@ -143,7 +143,7 @@ let characteristics = [
 ];
 let countries = [
     {id: 0, name: "choosecountry", characteristics: "11111111111",},
-    {id: 1, name: "australia", characteristics, characteristics: "32333333322",},
+    {id: 1, name: "australia", characteristics: "32333333322",},
     {id: 2, name: "austria", characteristics: "22322223332",},
     {id: 3, name: "belgium", characteristics: "32223233333",},
     {id: 4, name: "brazil", characteristics: "21221222212",},
