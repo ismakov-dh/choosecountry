@@ -278,7 +278,7 @@ body {
 
 /* Country Information */
 .countryInformation {
-    display: flex;
+    display: none;
     justify-content: center;
     padding-bottom: 200px;
 }
